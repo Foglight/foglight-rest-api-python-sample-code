@@ -15,7 +15,7 @@ def executeget( path , param={}):
     response = requests.get(CONNECTION_URL_PREFIX + path,
                             params=param,
                             headers={"Content-Type":"applicaiton/json",
-                                     "Auth-Token":config['Global']['api.token']})
+                                     "Access-Token":config['Global']['api.token']})
     if response.status_code == 200:
        return json.loads(response.content)
     else:
@@ -41,9 +41,9 @@ def executepost( path , data={}):
     response = requests.post(CONNECTION_URL_PREFIX + path,
                              json=data,
                              headers={'Content-Type':'application/json',
-                                      "Auth-Token": config['Global']['api.token']})
+                                      "Access-Token": config['Global']['api.token']})
     if response.status_code == 200:
-        return json.loads(response.content)
+        return response.json()
     else:
         print('request failed: ' + response.content)
     return
