@@ -1,7 +1,6 @@
 import configparser
 import requests
 import json
-from requests.auth import HTTPBasicAuth
 
 config = configparser.ConfigParser()
 config.read('__init__.cfg')
@@ -19,7 +18,7 @@ def executeget( path , param={}):
     if response.status_code == 200:
        return json.loads(response.content)
     else:
-        print('request failed: ' + response.content)
+        print(f'request failed: {response.content}')
     return
 
 def executelogin( username="", password="", authToken=""):
@@ -34,7 +33,7 @@ def executelogin( username="", password="", authToken=""):
     if response.status_code == 200:
         return response.json()
     else:
-        print('request failed: ' + response.content)
+        print(f'request failed: {response.content}')
     return
 
 def executepost( path , data={}):
@@ -45,7 +44,7 @@ def executepost( path , data={}):
     if response.status_code == 200:
         return response.json()
     else:
-        print('request failed: ' + response.content)
+        print(f'request failed: {response.content}')
     return
 
 def transformjson ( content = ""):
